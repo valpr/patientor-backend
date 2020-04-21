@@ -1,5 +1,5 @@
 import PatientList from '../../data/patientList';
-import {  Patient, ConfidentialPatient } from '../types';
+import {  NewPatient, Patient, ConfidentialPatient } from '../types';
 
 const getAll = (): Patient[] => {
     return PatientList;
@@ -15,8 +15,19 @@ const getConfidential = (): ConfidentialPatient[] =>{
     }));
 };
 
+const createPatient = (potential: NewPatient ): Patient => {
+    const randID = Math.floor(Math.random()*100000);
+    const newPatient: Patient = {
+        id: `${randID}`,
+        ...potential
+    };
+    PatientList.push(newPatient);
+    return newPatient;
+};
+
 
 export default {
     getAll,
-    getConfidential
+    getConfidential,
+    createPatient
 };
