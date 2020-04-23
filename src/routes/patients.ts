@@ -4,6 +4,16 @@ import validatePatient from '../utils';
 
 const router = express.Router();
 
+router.get('/:id', (req,res) => {
+    const id = req.params.id;
+    const foundPatient = PatientService.getOne(id);
+    if (foundPatient){
+        res.send();
+    }
+    res.status(404).json({error: `404 ID not found`});
+});
+
+
 router.get('/', (_req,res) => {
     res.send(PatientService.getConfidential());
 });

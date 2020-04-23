@@ -39,6 +39,7 @@ const validatePatient = (object: any): NewPatient => {
         dateOfBirth: parseDate(object.dateOfBirth),
         ssn: parseStringProp(object.ssn,'ssn'),
         gender: parseGender(object.gender),
+        entries: object.entries,
         occupation: parseStringProp(object.occupation,'occupation')
     };
     return patient;

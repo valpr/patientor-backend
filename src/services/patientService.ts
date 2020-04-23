@@ -1,6 +1,11 @@
 import PatientList from '../../data/patientList';
 import {  NewPatient, Patient, ConfidentialPatient } from '../types';
 
+
+const getOne = (id: string): Patient | undefined => {
+    return PatientList.find((patient) => id === patient.id);
+};
+
 const getAll = (): Patient[] => {
     return PatientList;
 };
@@ -29,5 +34,6 @@ const createPatient = (potential: NewPatient ): Patient => {
 export default {
     getAll,
     getConfidential,
-    createPatient
+    createPatient,
+    getOne,
 };
