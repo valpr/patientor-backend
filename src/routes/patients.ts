@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/:id', (req,res) => {
     const id = req.params.id;
     const foundPatient = PatientService.getOne(id);
-    console.log(foundPatient);
     if (foundPatient){
         res.send(foundPatient);
     }
