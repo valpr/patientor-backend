@@ -1,4 +1,4 @@
-import { NewPatient, gender } from './types';
+import { NewPatient, Gender, Entry } from './types';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const isString = (text: any): text is string => {
     return typeof text ==='string' || text instanceof String;
@@ -8,11 +8,11 @@ const isDate = (date: string): boolean => {
     return Boolean(Date.parse(date));
 };
 
-const isGender = (param: any): param is gender => {
-    return Object.values(gender).includes(param);
+const isGender = (param: any): param is Gender => {
+    return Object.values(Gender).includes(param);
 };
 
-const parseGender = (gender: any): gender => {
+const parseGender = (gender: any): Gender => {
     if (!gender || !isGender(gender)){
         throw new Error('Incorrect or missing gender: '+gender);
     }    
@@ -33,13 +33,24 @@ const parseStringProp = (prop: any, field: string): string => {
     return prop;
 };
 
+const parseEntries = (entries: any): Entry[] => {
+    if (!entries){
+        entries.forEach((entry: Entry) => {
+            if (!entry.type || !isString(entry.type)){
+                throw new Error ('Type missing or invalid');
+            }
+        });
+    }
+    return entries;
+};
+
 const validatePatient = (object: any): NewPatient => {
     const patient: NewPatient = {
         name: parseStringProp(object.name,'name'),
         dateOfBirth: parseDate(object.dateOfBirth),
         ssn: parseStringProp(object.ssn,'ssn'),
         gender: parseGender(object.gender),
-        entries: object.entries,
+        entries: parseEntries(object.entries),
         occupation: parseStringProp(object.occupation,'occupation')
     };
     return patient;

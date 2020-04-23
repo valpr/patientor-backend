@@ -7,10 +7,13 @@ const router = express.Router();
 router.get('/:id', (req,res) => {
     const id = req.params.id;
     const foundPatient = PatientService.getOne(id);
+    console.log(foundPatient);
     if (foundPatient){
-        res.send();
+        res.send(foundPatient);
     }
-    res.status(404).json({error: `404 ID not found`});
+    else{
+        res.status(404).json({error: `404 ID not found`});
+    }
 });
 
 
