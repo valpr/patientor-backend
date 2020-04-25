@@ -1,5 +1,5 @@
 import PatientList from '../../data/patientList';
-import {  NewPatient, Patient, ConfidentialPatient } from '../types';
+import {  NewPatient, Patient, ConfidentialPatient, Entry } from '../types';
 
 
 const getOne = (id: string): Patient | undefined => {
@@ -30,10 +30,21 @@ const createPatient = (potential: NewPatient ): Patient => {
     return newPatient;
 };
 
+const createEntry = (id: string,newEntry: Entry): Entry => {
+    
+    PatientList.map(
+        (patient) => id === patient.id ? 
+        patient.entries.push(newEntry): 
+        patient);
+
+    return newEntry;
+};
+
 
 export default {
     getAll,
     getConfidential,
     createPatient,
     getOne,
+    createEntry
 };

@@ -1,10 +1,13 @@
-POST http://localhost:3001/api/patients
+POST http://localhost:3001/api/patients/d2773c6e-f723-11e9-8f0b-362b9e155667/entries
 Content-Type: application/json
 
 {
-        "name": "Unoriginal Patient",
-        "dateOfBirth": "1982-07-09",
-        "ssn": "050786-122X",
-        "gender": "male",
-        "occupation": "Pilot"
+       "date":	"2019-05-01",
+        "specialist":	"Dr Byte House",
+        "type":	"Hospital",
+        "description":	"Digital overdose, very bytestatic. Otherwise healthy.",
+        "discharge": {
+            "date": "2012-02-02",
+            "criteria": "tests are good"
+        }
     }
